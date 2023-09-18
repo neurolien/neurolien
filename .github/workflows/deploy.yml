@@ -1,4 +1,4 @@
-# Sample workflow for building and deploying a Jekyll site to GitHub Pages
+# Sample workflow for building and deploying a site to GitHub Pages
 name: Deploy to GitHub Pages
 
 on:
@@ -28,8 +28,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
@@ -38,9 +36,14 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Build
-        run: npm run build
-      - name: Upload artifact
+        run: |
+          npm run build
+          touch build/.nojekyll
+      - name: Upload Artifacts
         uses: actions/upload-pages-artifact@v2
+        with:
+          # this should match the `pages` option in your adapter-static options
+          path: 'build/'
 
   # Deployment job
   deploy:
