@@ -61,6 +61,6 @@
     <InputForm label="Téléphone" value={phoneNumber} on:change={handleInputChange} />
   </div>
   <div id="recaptcha-container"></div>
-  <Button on:click={() => phoneVerify()}>Suivante</Button>
+  <Button on:click={() => phoneVerify()}>Suivant</Button>
 
 </div>

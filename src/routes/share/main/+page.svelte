@@ -13,6 +13,6 @@
   <InputForm label="Ville"/>
   <TextArea label="Ma recherche:" />
   <div class="mt-10">
-    <Button on:click={() => goto("/share/success")}>Suivante</Button>
+    <Button on:click={() => goto("/share/success")}>Suivant</Button>
   </div>
 </div>

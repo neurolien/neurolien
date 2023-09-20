@@ -28,7 +28,7 @@
   <TextArea label="Mes talents:" />
   <div class="mt-10">
 
-    <Button on:click={update}>Suivante</Button>
+    <Button on:click={update}>Suivant</Button>
 
   </div>
 </div>
