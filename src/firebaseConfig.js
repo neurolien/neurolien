@@ -1,10 +1,10 @@
-// firebaseConfig.js
+// import { env } from '$lib/env'
+
 export default {
-  apiKey: "AIzaSyBEeog3Qgfmzm_HBdGd08g8isgkZBJi0Is",
-  authDomain: "neurolien-test.firebaseapp.com",
-  projectId: "neurolien-test",
-  storageBucket: "neurolien-test.appspot.com",
-  messagingSenderId: "122915097578",
-  appId: "1:122915097578:web:5256d3faae11f33c64c093",
-  measurementId: "G-HYJCSHSY92"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: "neurolien.firebaseapp.com",
+  projectId: "neurolien",
+  storageBucket: "neurolien.appspot.com",
+  messagingSenderId: "875935047432",
+  appId: "1:875935047432:web:d4e40c056e6dbca9c8d6bd"
 };
