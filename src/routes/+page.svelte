@@ -2,12 +2,25 @@
   import { goto } from '$app/navigation';
   import { pageType } from '../store.js';
   import Button from '../components/Button.svelte';
+  import {isLoggedIn} from '../store';
   /**
      * @param {string} type
      */
    export function linkPage (type) {
+    // @ts-ignore
     pageType.set(type);
-    goto('/auth');
+    localStorage.setItem("pageType", type);
+    isLoggedIn.subscribe(value => {
+      if (value) {
+        if (type === "consult") {
+          goto("/consult/main")
+        } else {
+          goto("/share/main")
+        }
+      } else {
+        goto('/auth');
+      }
+    })
   }
 </script>
 
