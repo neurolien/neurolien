@@ -1,6 +1,7 @@
 <script>
   import { goto } from '$app/navigation';
   import { pageType } from '../store.js';
+  import Button from '../components/Button.svelte';
   /**
      * @param {string} type
      */
@@ -11,8 +12,8 @@
 </script>
 
 <div class="text-center">
-  <div class="pb-40 pt-40">
-    <img src="logo.png" alt="" class="w-[100px] m-auto">
+  <div class="pb-40 pt-32">
+    <img src="logo.png" alt="" class="w-[100px] m-auto mb-10">
     <p class="text-sky-400 text-5xl uppercase text-center">
       Neurolien
     </p>
@@ -22,7 +23,7 @@
   </div>
   
   <div class="flex flex-col items-center justify-center">
-    <button class="rounded-none bg-sky-400 text-2xl font-bold w-[330px] py-3 mb-10" on:click={() => linkPage('consult')}>Consult our talents</button>
-    <button class="rounded-none bg-sky-400 text-2xl font-bold w-[330px] py-3" on:click={() => linkPage('share')}>Share my talents</button>
+    <Button on:click={() => linkPage('consult')}>Consultez nos talents</Button>
+    <Button on:click={() => linkPage('share')}>Partager mes talents</Button>
   </div>
 </div>
