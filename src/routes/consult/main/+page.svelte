@@ -3,6 +3,7 @@
   import TextArea from "../../../components/TextArea.svelte";
   import Button from "../../../components/Button.svelte";
   import { goto } from "$app/navigation";
+
   import { user } from '../../../store';
   import { getAuth, updateCurrentUser } from 'firebase/auth';
   // const db = firebase.firestore();
@@ -17,6 +18,7 @@
       updateCurrentUser(auth, value);
     })
   }
+
 </script>
 
 <div class="grid grid-cols-1">
@@ -25,7 +27,9 @@
   <InputForm label="Ville"/>
   <TextArea label="Mes talents:" />
   <div class="mt-10">
+
     <Button on:click={update}>Suivante</Button>
+
   </div>
 </div>
 

@@ -1,5 +1,6 @@
 <script>
   import { goto } from "$app/navigation";
+
   import { pageType, isLoggedIn, user } from "../../../store";
   import Button from "../../../components/Button.svelte";
   import { PhoneAuthProvider, getAuth, signInWithCredential } from "firebase/auth";
@@ -38,6 +39,7 @@
   // @ts-ignore
   const handleInputChange = (e) => {
     code = e.target.value;
+
   }
 </script>
 
@@ -48,4 +50,5 @@
     <input value={code} on:change={handleInputChange} type="text" class="block w-1/2 text-center rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-500 sm:text-sm sm:leading-6 px-2 mb-16">
   </div>
   <Button on:click={() => confirmCode()}>Suivante</Button>
+
 </div>

@@ -52,6 +52,7 @@
     phoneNumber = e.target.value;
   }
 
+
 </script>
 
 <div class="grid grid-cols-1">
@@ -61,4 +62,5 @@
   </div>
   <div id="recaptcha-container"></div>
   <Button on:click={() => phoneVerify()}>Suivante</Button>
+
 </div>

@@ -3,6 +3,7 @@
   import { pageType } from '../store.js';
   import Button from '../components/Button.svelte';
   import {isLoggedIn} from '../store';
+
   /**
      * @param {string} type
      */
