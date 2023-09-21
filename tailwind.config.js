@@ -11,6 +11,11 @@ export default {
       '2xl': {'min': '1536px'},
       '3xl': {'min': '2500px'},
     },
+    colors: {
+      "main": "#62b5e5",
+      "white": "#fff",
+      "gray": "#111835",
+    },
   },
   plugins: [],
 }
