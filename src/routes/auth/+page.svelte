@@ -56,7 +56,7 @@
 </script>
 
 <div class="grid grid-cols-1">
-  <p class="text-4xl font-bold text-center text-sky-400 mb-24 ">Je suis un talent</p>
+  <p class="text-4xl font-bold text-center text-main mb-24 ">Je suis un talent</p>
   <div class="mb-24">
     <InputForm label="Téléphone" value={phoneNumber} on:change={handleInputChange} />
   </div>

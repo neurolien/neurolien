@@ -6,7 +6,9 @@
   import { initFirebase } from '$lib/client/firebase';
   onMount(() => {
     // @ts-ignore
-    pageType.set(localStorage.getItem("pageType") ? localStorage.getItem("pageType") : "");
+    pageType.set(localStorage.getItem("pageType") ? localStorage.getItem("pageType") : null);
+    // @ts-ignore
+    pageType.set(localStorage.getItem("user") ? localStorage.getItem("user") : null);
     
     initFirebase();
     const auth = getAuth();
@@ -20,9 +22,13 @@
       if (now >= expirationTime) {
         // Perform any necessary actions, such as signing the user out
         signOut(auth);
+        // @ts-ignore
+        localStorage.setItem("user", null);
       } else {
         // @ts-ignore
         user.set(userRes);
+        // @ts-ignore
+        localStorage.setItem("user", userRes);
         isLoggedIn.set(true);
       }
     } else {
