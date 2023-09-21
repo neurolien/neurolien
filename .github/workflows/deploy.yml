@@ -44,6 +44,8 @@ jobs:
         with:
           # this should match the `pages` option in your adapter-static options
           path: 'build/'
+    env:
+      env_var: ${{ vars.VITE_FIREBASE_API_KEY }}
 
   # Deployment job
   deploy:
