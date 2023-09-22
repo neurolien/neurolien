@@ -26,7 +26,7 @@
 </script>
 
 <div class="text-center">
-  <div class="pb-40 pt-32">
+  <div class="pb-20 pt-20">
     <img src="home.gif" alt="" class="m-auto mb-10">
     <!-- <p class="text-main text-5xl uppercase text-center">
       Neurolien
