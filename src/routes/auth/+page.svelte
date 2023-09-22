@@ -1,4 +1,6 @@
+
 <script lang="ts">
+
   import { onMount } from 'svelte';
   import InputForm from "../../components/InputForm.svelte";
   import Button from "../../components/Button.svelte";
@@ -43,10 +45,12 @@
       recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
         size: 'invisible', // Optional configuration options
       });
+
       let type;
       pageType.subscribe(value => {
         type = value;
       });
+
     }
 
     const checkApp = setInterval(() => {
@@ -56,6 +60,7 @@
         initialize();
       }
     }, 100);
+
   });
 
   const phoneVerify = () => {
@@ -63,6 +68,7 @@
     // return;
     const auth = getAuth();
     auth.languageCode = 'it';
+
     if (value && valid) {
       signInWithPhoneNumber(auth, value, recaptchaVerifier)
         .then((confirmationResult) => {
@@ -78,6 +84,7 @@
       alertShow = true;
     }
   }
+
 
 
 
@@ -132,4 +139,5 @@
   </div>
   <div id="recaptcha-container"></div>
   <Button on:click={() => phoneVerify()}>Suivant</Button>
+
 </div>

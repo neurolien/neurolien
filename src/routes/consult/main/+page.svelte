@@ -40,6 +40,7 @@
         }
       });
     }, 100);
+
   })
   
   const updateUser = async () => {
@@ -89,7 +90,6 @@
 <div class="grid grid-cols-1">
   <p class="text-4xl font-bold text-center text-main mb-24 ">Je suis un talent</p>
   <InputForm label="Pseudo" value={nickname} on:change={(e) => nickname=e.target.value}  />
-  <!-- <InputForm label="Ville" value={city} on:change={(e) => city=e.target.value}  /> -->
   <LocationSearch value={city}  on:placeChanged={setLocation}/>
   <TextArea label="Mes talents:"  value={provides} on:change={(e) => provides=e.target.value}   />
   <div class="mt-10">

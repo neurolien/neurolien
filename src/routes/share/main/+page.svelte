@@ -88,7 +88,6 @@
     geometry = `${e.detail.place.geometry.location.lat()}, ${e.detail.place.geometry.location.lng()}`; 
     city = e.detail.selectedPrediction;
   }
-
 </script>
 
 <div class="grid grid-cols-1">

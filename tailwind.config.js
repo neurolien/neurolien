@@ -13,6 +13,11 @@ export default {
         'xs': {'max': '400px'},
       },
     },
+    colors: {
+      "main": "#62b5e5",
+      "white": "#fff",
+      "gray": "#111835",
+    },
   },
   plugins: [],
 }
