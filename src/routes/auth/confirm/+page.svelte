@@ -1,12 +1,15 @@
 <script>
   import { goto } from "$app/navigation";
-
+  import ErrorMessage from "../../../components/ErrorMessage.svelte";
   import { pageType, isLoggedIn, user } from "../../../store";
   import Button from "../../../components/Button.svelte";
   import InputForm from "../../../components/InputForm.svelte";
   import { PhoneAuthProvider, getAuth, signInWithCredential } from "firebase/auth";
 
   let code = "";
+  let alertShow = false;
+  let alertContent = "";
+
   const confirmCode = () => {
     const auth = getAuth();
     // @ts-ignore
@@ -31,7 +34,8 @@
         goto("/share/main")
       }
     }).catch((error) => {
-      alert(`${error.name}: ${error.code}`);
+      alertContent = "Code invalide";
+      alertShow = true;
     });
   }
 
@@ -50,7 +54,8 @@
   <p class="text-4xl font-bold text-center text-main mb-20 ">Je suis un talent</p>
   <p class="text-2xl font-bold text-center text-main mb-10">Codes SMS</p>
   <div class="flex justify-center mb-16">
-    <InputForm label="" value={code} on:change={handleInputChange}/>
+    <ErrorMessage show={alertShow} content={alertContent}/>
+    <InputForm label="" value={code} on:change={handleInputChange} autocomplete="one-time-code"/>
   </div>
   <Button on:click={() => confirmCode()}>Suivant</Button>
 

@@ -1,14 +1,12 @@
 
 <script>
 // @ts-nocheck
-
   import { onMount } from 'svelte';
   import InputForm from "../../../components/InputForm.svelte";
   import TextArea from "../../../components/TextArea.svelte";
   import Button from "../../../components/Button.svelte";
   import LocationSearch from '../../../components/LocationSearch.svelte';
   import { goto } from "$app/navigation";
-
   import { collection, doc, setDoc, getFirestore, getDocs, query, where } from "firebase/firestore";
   import { user } from '../../../store';
 

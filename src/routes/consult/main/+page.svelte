@@ -31,7 +31,6 @@
         provides = item.data().provides ? item.data().provides : "";
       });
     }
-
     const checkApp = setInterval(() => {
       user.subscribe(value => {
         if (value) {
