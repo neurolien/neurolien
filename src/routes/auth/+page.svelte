@@ -1,8 +1,6 @@
-
 <script lang="ts">
-
+  // @ts-nocheck
   import { onMount } from 'svelte';
-  import InputForm from "../../components/InputForm.svelte";
   import Button from "../../components/Button.svelte";
   import ErrorMessage from "../../components/ErrorMessage.svelte";
   import { goto } from "$app/navigation";
@@ -171,13 +169,15 @@
       alertShow = true;
     }
   }
-
+  const setAlertShow = (status) => {
+    alertShow = status
+  }
 </script>
 
 <div class="grid grid-cols-1">
   <p class="text-4xl font-bold text-center text-main mb-24 ">Je suis un talent</p>
   <div class="mb-24">
-    <ErrorMessage show={alertShow} content={alertContent}/>
+    <ErrorMessage show={alertShow} content={alertContent} setAlertShow={setAlertShow}/>
     <!-- <InputForm label="Téléphone" value={phoneNumber} on:change={handleInputChange} on:focus={() => alertShow=false}/> -->
     <!-- <TelephoneInput /> -->
     <div
