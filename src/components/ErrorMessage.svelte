@@ -7,7 +7,6 @@
   $: !show && testIsChanged();
 
   const testIsChanged = () => {
-    console.log(show);
     setAlertShow(show);
   }
 </script>
