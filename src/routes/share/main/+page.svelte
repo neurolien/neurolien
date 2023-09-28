@@ -5,6 +5,7 @@
   import InputForm from "../../../components/InputForm.svelte";
   import TextArea from "../../../components/TextArea.svelte";
   import Button from "../../../components/Button.svelte";
+  import ErrorMessage from '../../../components/ErrorMessage.svelte';
   import LocationSearch from '../../../components/LocationSearch.svelte';
   import { goto } from "$app/navigation";
   import { collection, doc, setDoc, getFirestore, getDocs, query, where } from "firebase/firestore";
@@ -15,6 +16,8 @@
   let city = "";
   let geometry = "";
   let seeks = "";
+  let alertContent = "";
+  let alertShow = false;
 
   onMount(() => {
     const getUser = async () => {
@@ -46,39 +49,49 @@
   });
 
   const updateUser = async () => {
-    let userData;
-    user.subscribe(value => {
-      userData = value;
-    });
-    
-    const db = getFirestore();
-    const usersRef = collection(db, "users");
-    const q = query(usersRef, where('phoneNumber', '==', userData.phoneNumber));
-    const querySnapshot = await getDocs(q);
-    if (querySnapshot.docs.length > 0) {
-      querySnapshot.forEach(async (item) => {
-        await setDoc(doc(usersRef, item.id), {
+    try {
+      let userData;
+      user.subscribe(value => {
+        userData = value;
+      });
+      if (firstname === "" || lastname === "" || city === "") {
+        alertContent = "valeur d'entrée invalide";
+        alertShow = true;
+        return;
+      }
+      const db = getFirestore();
+      const usersRef = collection(db, "users");
+      const q = query(usersRef, where('phoneNumber', '==', userData.phoneNumber));
+      const querySnapshot = await getDocs(q);
+      if (querySnapshot.docs.length > 0) {
+        querySnapshot.forEach(async (item) => {
+          await setDoc(doc(usersRef, item.id), {
+            phoneNumber: userData.phoneNumber,
+            firstname,
+            lastname,
+            city,
+            geometry,
+            seeks,
+            provides: item.data().provides ? item.data().provides : "",
+            nickname: item.data().nickname ? item.data().nickname : "",
+          });
+          goto("/share/success");
+        });
+      } else {
+        await setDoc(doc(usersRef), {
           phoneNumber: userData.phoneNumber,
           firstname,
           lastname,
           city,
           geometry,
-          seeks,
-          provides: item.data().provides ? item.data().provides : "",
-          nickname: item.data().nickname ? item.data().nickname : "",
+          seeks
         });
         goto("/share/success");
-      });
-    } else {
-      await setDoc(doc(usersRef), {
-        phoneNumber: userData.phoneNumber,
-        firstname,
-        lastname,
-        city,
-        geometry,
-        seeks
-      });
-      goto("/share/success");
+      }
+    } catch (e) {
+      console.log(e)
+      alertContent = "Quelque chose s'est mal passé";
+      alertShow = true;
     }
   }
 
@@ -86,10 +99,15 @@
     geometry = `${e.detail.place.geometry.location.lat()}, ${e.detail.place.geometry.location.lng()}`; 
     city = e.detail.selectedPrediction;
   }
+
+  const setAlertShow = (status) => {
+    alertShow = status
+  }
 </script>
 
 <div class="grid grid-cols-1">
-  <p class="text-4xl font-bold text-center text-main mb-24">je recherche des talents</p>
+  <p class="text-4xl font-bold text-center text-main mb-16">je recherche des talents</p>
+  <ErrorMessage show={alertShow} content={alertContent} setAlertShow={setAlertShow}/>
   <InputForm label="Prénom" value={firstname} on:change={(e) => firstname=e.target.value} />
   <InputForm label="Nom" value={lastname} on:change={(e) => lastname=e.target.value} />
   <LocationSearch value={city}  on:placeChanged={setLocation}/>

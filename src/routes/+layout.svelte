@@ -31,7 +31,6 @@
       }
     } else {
       // User is signed out
-      console.log($page.route.id)
       if ($page.route.id != "/auth" && $page.route.id != "/" && $page.route.id != "/auth/confirm") {
         goto("/");
       }
@@ -40,7 +39,7 @@
   })
 </script>
 
-<div class="flex items-center justify-center">
+<div class="flex items-center justify-center min-h-screen bg-white">
   <div class="w-[400px] xs:w-full px-5">
     <slot />
   </div>

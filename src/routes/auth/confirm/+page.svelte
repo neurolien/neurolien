@@ -14,15 +14,11 @@
   const confirmCode = () => {
     try {
       const auth = getAuth();
-      // @ts-ignore
       const credential = PhoneAuthProvider.credential(window.confirmationResult.verificationId, code);
   
-      // @ts-ignore
       signInWithCredential(auth, credential)
       .then((confirmationResult) => {
-        // @ts-ignore
         user.set(confirmationResult.user);
-        // @ts-ignore
         localStorage.setItem("user", confirmationResult.user);
         isLoggedIn.set(true);
         
@@ -40,13 +36,12 @@
         alertShow = true;
       });
     } catch (e) {
-      // console.log(alertShow);
-      alertContent = "Code invalide";
+      console.log(e)
+      alertContent = "Quelque chose s'est mal passé";
       alertShow = true;
     }
   }
 
-  // @ts-ignore
   const handleInputChange = (e) => {
     code = e.target.value;
   }
@@ -61,7 +56,7 @@
   <p class="text-2xl font-bold text-center text-main mb-10">Codes SMS</p>
   <ErrorMessage show={alertShow} content={alertContent} setAlertShow={setAlertShow}/>
   <div class="flex justify-center mb-16">
-    <InputForm label="" value={code} on:change={handleInputChange} autocomplete="one-time-code"/>
+    <InputForm label="" value={code} on:change={handleInputChange} autocomplete="one-time-code" textAlign="center"/>
   </div>
   <Button on:click={() => confirmCode()}>Suivant</Button>
 

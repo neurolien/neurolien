@@ -149,23 +149,26 @@
   });
 
   const phoneVerify = () => {
-    // goto("/auth/confirm");
-    // return;
-    const auth = getAuth();
-    auth.languageCode = 'it';
-
-    if (value && valid) {
-      signInWithPhoneNumber(auth, value, recaptchaVerifier)
-        .then((confirmationResult) => {
-          // @ts-ignore
-          window.confirmationResult = confirmationResult;
-          goto("/auth/confirm");
-        }).catch((error) => {
-          alertContent = `Numéro de téléphone invalide`;
-          alertShow = true;
-        });
-    } else {
-      alertContent = "Numéro de téléphone invalide";
+    try {
+      const auth = getAuth();
+      auth.languageCode = 'it';
+  
+      if (value && valid) {
+        signInWithPhoneNumber(auth, value, recaptchaVerifier)
+          .then((confirmationResult) => {
+            window.confirmationResult = confirmationResult;
+            goto("/auth/confirm");
+          }).catch((error) => {
+            alertContent = `Numéro de téléphone invalide`;
+            alertShow = true;
+          });
+      } else {
+        alertContent = "Numéro de téléphone invalide";
+        alertShow = true;
+      }
+    } catch (e) {
+      console.log(e)
+      alertContent = "Quelque chose s'est mal passé";
       alertShow = true;
     }
   }
@@ -178,10 +181,8 @@
   <p class="text-4xl font-bold text-center text-main mb-24 ">Je suis un talent</p>
   <div class="mb-24">
     <ErrorMessage show={alertShow} content={alertContent} setAlertShow={setAlertShow}/>
-    <!-- <InputForm label="Téléphone" value={phoneNumber} on:change={handleInputChange} on:focus={() => alertShow=false}/> -->
-    <!-- <TelephoneInput /> -->
     <div
-    class="mt-5 flex relative rounded-lg {valid
+    class="flex relative rounded-lg {valid
       ? ``
       : ` ring-pink-500 ring-1 focus-within:ring-offset-1 focus-within:ring-offset-pink-500/50 focus-within:ring-1`}"
     >
