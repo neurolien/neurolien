@@ -27,13 +27,7 @@
 
 <div class="text-center">
   <div class="pb-20 pt-20">
-    <img src="home.gif" alt="" class="m-auto mb-10">
-    <!-- <p class="text-main text-5xl uppercase text-center">
-      Neurolien
-    </p>
-    <p class="text-sky-800 text-sm pt-2 font-bold uppercase text-center">
-      partageons nos talents
-    </p> -->
+    <img src="home.png" alt="" class="m-auto mb-10">
   </div>
   
   <div class="flex flex-col items-center justify-center">
